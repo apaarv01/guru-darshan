@@ -2,57 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Spiritual Hindu-inspired design system with warm saffron tones
+All colors MUST be HSL for consistency
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Sacred color palette inspired by Hindu traditions */
+    --background: 35 25% 98%; /* Warm ivory white */
+    --foreground: 15 25% 15%; /* Deep earth brown */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 40 50% 97%; /* Cream white with subtle warmth */
+    --card-foreground: 15 25% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 50% 97%;
+    --popover-foreground: 15 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Saffron primary - sacred Hindu color */
+    --primary: 30 100% 60%; /* Rich saffron orange */
+    --primary-foreground: 40 50% 97%;
+    --primary-glow: 35 95% 70%; /* Lighter saffron for glows */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Gold secondary for accents */
+    --secondary: 45 85% 55%; /* Deep ceremonial gold */
+    --secondary-foreground: 15 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted warm tones */
+    --muted: 40 30% 90%; /* Soft beige */
+    --muted-foreground: 25 15% 45%; /* Warm gray */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent colors */
+    --accent: 35 70% 85%; /* Light saffron accent */
+    --accent-foreground: 15 25% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Spiritual red for important elements */
+    --spiritual-red: 0 75% 55%; /* Temple red */
+    --spiritual-red-foreground: 40 50% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 40 50% 97%;
 
-    --radius: 0.5rem;
+    --border: 40 25% 85%; /* Subtle warm border */
+    --input: 40 25% 90%; /* Input background */
+    --ring: 30 100% 60%; /* Saffron focus ring */
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.75rem; /* Slightly more rounded for spiritual feel */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Sacred geometry and spiritual elements */
+    --mandala-center: 35 85% 65%; /* Central mandala color */
+    --om-symbol: 45 90% 50%; /* Om symbol gold */
+    
+    /* Gradient definitions for spiritual backgrounds */
+    --gradient-divine: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    --gradient-peace: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--accent)) 100%);
+    --gradient-meditation: radial-gradient(circle, hsl(var(--primary-glow)) 0%, hsl(var(--primary)) 100%);
+    
+    /* Animations for spiritual elements */
+    --transition-sacred: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-peaceful: all 0.6s ease-in-out;
+    
+    /* Sacred shadows with golden glow */
+    --shadow-divine: 0 8px 32px hsl(var(--primary) / 0.15);
+    --shadow-peaceful: 0 4px 20px hsl(var(--secondary) / 0.1);
+    --shadow-meditation: 0 0 40px hsl(var(--primary-glow) / 0.3);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Bottom navigation styling */
+    --tab-background: 40 50% 97%;
+    --tab-foreground: 15 25% 15%;
+    --tab-active: 30 100% 60%;
+    --tab-active-foreground: 40 50% 97%;
   }
 
   .dark {
@@ -100,6 +118,75 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Sacred typography styles */
+  .quote-text {
+    @apply font-serif text-xl leading-relaxed text-center;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  
+  .spiritual-heading {
+    @apply font-serif text-2xl font-semibold;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  
+  /* Sacred elements */
+  .mandala-bg {
+    background: var(--gradient-meditation);
+  }
+  
+  .divine-shadow {
+    box-shadow: var(--shadow-divine);
+  }
+  
+  .peaceful-shadow {
+    box-shadow: var(--shadow-peaceful);
+  }
+  
+  /* Spiritual animations */
+  .sacred-transition {
+    transition: var(--transition-sacred);
+  }
+  
+  .peaceful-transition {
+    transition: var(--transition-peaceful);
+  }
+  
+  /* Gentle pulse for sacred elements */
+  @keyframes sacred-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  .sacred-pulse {
+    animation: sacred-pulse 3s ease-in-out infinite;
+  }
+}
+
+@layer components {
+  /* Tab navigation styles */
+  .tab-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border;
+    background: hsl(var(--tab-background));
+  }
+  
+  .tab-item {
+    @apply flex-1 flex flex-col items-center justify-center py-2 px-1;
+    color: hsl(var(--tab-foreground));
+    transition: var(--transition-sacred);
+  }
+  
+  .tab-item.active {
+    background: hsl(var(--tab-active));
+    color: hsl(var(--tab-active-foreground));
+  }
+  
+  /* Quote card styling */
+  .quote-card {
+    @apply bg-card rounded-xl p-6 m-4;
+    box-shadow: var(--shadow-peaceful);
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--accent)));
   }
 }

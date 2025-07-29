@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -52,16 +53,38 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				// Spiritual color extensions
+				spiritual: {
+					red: 'hsl(var(--spiritual-red))',
+					'red-foreground': 'hsl(var(--spiritual-red-foreground))'
+				},
+				mandala: {
+					center: 'hsl(var(--mandala-center))'
+				},
+				om: 'hsl(var(--om-symbol))',
+				tab: {
+					background: 'hsl(var(--tab-background))',
+					foreground: 'hsl(var(--tab-foreground))',
+					active: 'hsl(var(--tab-active))',
+					'active-foreground': 'hsl(var(--tab-active-foreground))'
 				}
+			},
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				serif: ['Playfair Display', 'Georgia', 'serif'],
+			},
+			backgroundImage: {
+				'gradient-divine': 'var(--gradient-divine)',
+				'gradient-peace': 'var(--gradient-peace)',
+				'gradient-meditation': 'var(--gradient-meditation)',
+			},
+			boxShadow: {
+				'divine': 'var(--shadow-divine)',
+				'peaceful': 'var(--shadow-peaceful)',
+				'meditation': 'var(--shadow-meditation)',
+			},
+			transitionTimingFunction: {
+				'sacred': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +107,31 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'sacred-pulse': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				},
+				'gentle-float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-4px)' }
+				},
+				'fade-in-up': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0px)' }
+				},
+				'scale-in': {
+					'0%': { opacity: '0', transform: 'scale(0.95)' },
+					'100%': { opacity: '1', transform: 'scale(1)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'sacred-pulse': 'sacred-pulse 3s ease-in-out infinite',
+				'gentle-float': 'gentle-float 4s ease-in-out infinite',
+				'fade-in-up': 'fade-in-up 0.6s ease-out',
+				'scale-in': 'scale-in 0.4s ease-out'
 			}
 		}
 	},
