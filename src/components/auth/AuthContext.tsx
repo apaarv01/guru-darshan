@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         id: '1',
         name: 'Spiritual Seeker',
         email,
-        isAdmin: email === 'admin@example.com'
+        isAdmin: true // Set to true for testing admin features
       };
       
       setUser(mockUser);
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         id: '2',
         name: 'Google User',
         email: 'user@gmail.com',
-        isAdmin: false
+        isAdmin: true // Set to true for testing admin features
       };
       
       setUser(mockUser);
