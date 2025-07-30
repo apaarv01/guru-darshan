@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Send, Calendar, MessageCircle, Save } from 'lucide-react';
+import { Plus, Send, Calendar, MessageCircle, Save, BarChart3, Users, Eye, Clock } from 'lucide-react';
 
 export const AdminPage = () => {
   const [quoteForm, setQuoteForm] = useState({
@@ -25,6 +25,26 @@ export const AdminPage = () => {
   });
 
   const { toast } = useToast();
+
+  // Dummy analytics data
+  const analyticsData = {
+    totalUsers: 1247,
+    activeUsers: 892,
+    pageViews: {
+      quotes: 3456,
+      videos: 2789,
+      calendar: 1234,
+      gurudev: 876
+    },
+    currentlyOnline: 34,
+    recentUsers: [
+      { name: "Sarah M.", location: "California", lastActive: "2 minutes ago", page: "Quotes" },
+      { name: "Rahul P.", location: "New York", lastActive: "5 minutes ago", page: "Videos" },
+      { name: "Maria L.", location: "Texas", lastActive: "8 minutes ago", page: "Calendar" },
+      { name: "David K.", location: "Florida", lastActive: "12 minutes ago", page: "Gurudev" },
+      { name: "Priya S.", location: "California", lastActive: "15 minutes ago", page: "Quotes" }
+    ]
+  };
 
   const handleQuoteSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +98,7 @@ export const AdminPage = () => {
         </div>
 
         <Tabs defaultValue="quotes" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="quotes" className="flex items-center space-x-2">
               <MessageCircle className="w-4 h-4" />
               <span>Quotes</span>
@@ -90,6 +110,10 @@ export const AdminPage = () => {
             <TabsTrigger value="notifications" className="flex items-center space-x-2">
               <Send className="w-4 h-4" />
               <span>Notify</span>
+            </TabsTrigger>
+            <TabsTrigger value="analytics" className="flex items-center space-x-2">
+              <BarChart3 className="w-4 h-4" />
+              <span>Analytics</span>
             </TabsTrigger>
           </TabsList>
 
@@ -279,6 +303,115 @@ export const AdminPage = () => {
                     <div className="flex justify-between items-center py-2">
                       <span>Push notification sent to 1,247 users</span>
                       <span className="text-muted-foreground">2 days ago</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* Analytics */}
+          <TabsContent value="analytics">
+            <div className="space-y-4">
+              {/* Stats Overview */}
+              <div className="grid grid-cols-2 gap-4">
+                <Card className="divine-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-2">
+                      <Users className="w-5 h-5 text-primary" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Total Users</p>
+                        <p className="text-2xl font-bold text-primary">{analyticsData.totalUsers.toLocaleString()}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="divine-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-2">
+                      <Eye className="w-5 h-5 text-primary" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Currently Online</p>
+                        <p className="text-2xl font-bold text-primary">{analyticsData.currentlyOnline}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Page Views */}
+              <Card className="divine-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <BarChart3 className="w-5 h-5" />
+                    <span>Page Views (Last 7 Days)</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {Object.entries(analyticsData.pageViews).map(([page, views]) => (
+                      <div key={page} className="flex justify-between items-center">
+                        <span className="capitalize font-medium">{page}</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-24 bg-muted rounded-full h-2">
+                            <div 
+                              className="bg-primary h-2 rounded-full" 
+                              style={{ width: `${(views / Math.max(...Object.values(analyticsData.pageViews))) * 100}%` }}
+                            />
+                          </div>
+                          <span className="text-sm font-mono min-w-[3rem] text-right">{views.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Recent Users */}
+              <Card className="divine-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Clock className="w-5 h-5" />
+                    <span>Recent User Activity</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {analyticsData.recentUsers.map((user, index) => (
+                      <div key={index} className="flex justify-between items-center py-2 border-b border-border last:border-b-0">
+                        <div>
+                          <p className="font-medium">{user.name}</p>
+                          <p className="text-sm text-muted-foreground">{user.location} • {user.page}</p>
+                        </div>
+                        <span className="text-xs text-muted-foreground">{user.lastActive}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Live Activity */}
+              <Card className="peaceful-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span>Live Activity</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center">
+                      <span>Active users in last 5 minutes</span>
+                      <span className="font-mono text-primary">{analyticsData.activeUsers}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Most popular page right now</span>
+                      <span className="font-medium">Quotes</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Average session duration</span>
+                      <span className="font-mono">4m 32s</span>
                     </div>
                   </div>
                 </CardContent>
